@@ -97,6 +97,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install mlflow
+          pip install dvc
+          pip install dvc-azure  # Install the Azure plugin
+      - name: Install dependencies for DVC
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dvc
+          pip install dvc-azure  # Install the Azure plugin
       - name: Pull DVC data for training
         run: |
           dvc pull data/iris.csv  # Ensure iris.csv is pulled for the training stage
