@@ -1,12 +1,12 @@
 # Base image
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 # Working directory
 WORKDIR /app
 
 # Copy application code and Model
-COPY . App/app.py /app/
-COPY . Model/model.pkl /app/
+COPY . app/app.py /app/
+COPY . model/model.pkl /app/
 # Install dependencies
 RUN pip install --no-cache-dir flask numpy scikit-learn
 
@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir flask numpy scikit-learn
 EXPOSE 5000
 
 # Run the Flask application
-CMD ["python", "App/app.py"]
+CMD ["python", "app/app.py"]
