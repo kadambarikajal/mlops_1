@@ -38,4 +38,4 @@ jobs:
 
       - name: Run model training (or any other task)
         run: |
-          python src/model.py  
+          python model_training/model.py  
