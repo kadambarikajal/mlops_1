@@ -141,4 +141,4 @@ jobs:
 
       - name: Deploy Docker container
         run: |
-          docker run -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/model-api:latest          
+          docker run -d -p 6000:6000 ${{ secrets.DOCKER_USERNAME }}/model-api:latest          
