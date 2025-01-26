@@ -129,7 +129,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t /model-api:latest .
+          docker build -t model-api:latest .
 
       - name: Push Docker image to Docker Hub
         run: |
