@@ -23,20 +23,80 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install mlflow
           pip install -r requirements.txt
+          pip install mlflow
           pip install dvc  # Install DVC
           pip install dvc-azure  # Install the Azure plugin
+          pip install flake8  # Install flake8 for linting
+
+  linting:
+    runs-on: ubuntu-latest
+    needs: install  # Ensure the dependencies are installed first
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies for linting
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8
+
+      - name: Run flake8
+        run: |
+          flake8 . --max-line-length=79  # Adjust according to your project's style guide
+
+  dvc:
+    runs-on: ubuntu-latest
+    needs: linting  # Ensure linting passes before DVC-related tasks
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies for DVC
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dvc
+          pip install dvc-azure  # Install the Azure plugin
+
       - name: Set up DVC remote for AZURE
         run: |
           dvc remote add -d azureremote azure://mlops
           dvc remote modify azureremote account_name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
           dvc remote modify azureremote account_key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+
       - name: Pull DVC data from remote
         run: |
-          #dvc checkout data/iris.csv#301abed5efe50eccda350cde38e0eb
           dvc pull  # Pull data from remote storage
 
-      - name: Run model training (or any other task)
+  training:
+    runs-on: ubuntu-latest
+    needs: dvc  # Ensure DVC pull completes before training
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies for model training
         run: |
-          python model_training/model.py  
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run model training
+        run: |
+          python model_training/model.py   # Adjust the script path accordingly
