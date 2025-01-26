@@ -1,0 +1,6 @@
+# Ignore MLflow experiment logs
+mlruns/
+#ignore Data
+data/*.csv
+#model
+model/
