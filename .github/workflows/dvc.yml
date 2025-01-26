@@ -105,6 +105,11 @@ jobs:
           pip install -r requirements.txt
           pip install dvc
           pip install dvc-azure  # Install the Azure plugin
+      - name: Set up DVC remote for AZURE
+        run: |
+          dvc remote add -d azureremote azure://mlops
+          dvc remote modify azureremote account_name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}
+          dvc remote modify azureremote account_key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
       - name: Pull DVC data for training
         run: |
           dvc pull data/iris.csv  # Ensure iris.csv is pulled for the training stage
