@@ -54,6 +54,7 @@ jobs:
 
   training:
     runs-on: ubuntu-latest
+    needs: linting
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
