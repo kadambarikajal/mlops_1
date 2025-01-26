@@ -11,7 +11,7 @@ COPY . model/model.pkl /app/
 RUN pip install --no-cache-dir flask numpy scikit-learn
 
 # Expose port
-EXPOSE 5000
+EXPOSE 80
 
 # Run the Flask application
 CMD ["python", "app/app.py"]
