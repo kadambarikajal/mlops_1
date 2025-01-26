@@ -1,4 +1,10 @@
-Local Deployment
+Local Training 
+
+1. git clone git@github.com:kadambarikajal/mlops_1.git
+2. python3 model_training/model.py
+
+Local Deployment & Testing
+
 1. docker pull docker.io/kadambarikajal12/model-api:latest
 2. docker run -p 5000:5030 docker.io/kadambarikajal12/model-api:latest
 
