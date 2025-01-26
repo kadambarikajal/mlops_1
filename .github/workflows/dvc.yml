@@ -33,7 +33,7 @@ jobs:
           dvc remote modify azureremote account_key ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
       - name: Pull DVC data from remote
         run: |
-          dvc checkout data/iris.csv#301abed5efe50eccda350cde38e0eb
+          #dvc checkout data/iris.csv#301abed5efe50eccda350cde38e0eb
           dvc pull  # Pull data from remote storage
 
       - name: Run model training (or any other task)
