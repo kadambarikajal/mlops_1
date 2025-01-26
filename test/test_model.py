@@ -1,5 +1,4 @@
 import unittest
-import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.datasets import load_iris
@@ -7,6 +6,7 @@ import pickle
 import os
 import mlflow
 import mlflow.sklearn
+
 
 class TestModel(unittest.TestCase):
 
@@ -71,6 +71,6 @@ class TestModel(unittest.TestCase):
         if os.path.exists('model.pkl'):
             os.remove('model.pkl')
 
+
 if __name__ == "__main__":
     unittest.main()
-
