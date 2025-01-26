@@ -54,7 +54,6 @@ jobs:
 
   training:
     runs-on: ubuntu-latest
-    needs: dvc  # Ensure DVC pull completes before training
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
