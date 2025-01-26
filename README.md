@@ -1,7 +1,8 @@
 Local Training 
 
 1. git clone git@github.com:kadambarikajal/mlops_1.git
-2. python3 model_training/model.py
+2. dvc pull
+3. python3 model_training/model.py
 
 Local Deployment & Testing
 
