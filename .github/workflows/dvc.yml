@@ -97,6 +97,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install mlflow
+      - name: Pull DVC data for training
+        run: |
+          dvc pull data/iris.csv  # Ensure iris.csv is pulled for the training stage
 
       - name: Run model training
         run: |
