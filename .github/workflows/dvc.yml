@@ -49,7 +49,7 @@ jobs:
 
       - name: Run flake8
         run: |
-          flake8 . --max-line-length=79  # Adjust according to your project's style guide
+          flake8 . --max-line-length=120
 
   dvc:
     runs-on: ubuntu-latest

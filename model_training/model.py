@@ -54,4 +54,3 @@ with mlflow.start_run():
     # Optionally, save the best model using pickle (for example purposes)
     with open('model/model.pkl', 'wb') as f:
         pickle.dump(best_model, f)
-

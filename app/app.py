@@ -11,9 +11,11 @@ with open(MODEL_PATH, 'rb') as file:
 # Initialize Flask application
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET'])
 def home():
     return "Model is ready!"
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -25,6 +27,7 @@ def predict():
         return jsonify({'prediction': prediction.tolist()})
     except Exception as e:
         return jsonify({'error': str(e)})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
