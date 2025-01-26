@@ -25,6 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install dvc  # Install DVC
+          pip install dvc-azure  # Install the Azure plugin
       - name: Set up DVC remote for AZURE
         run: |
           dvc remote add -d azureremote azure://mlops
